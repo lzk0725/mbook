@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户注册</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/mbook/public/static/JQM/jquery.mobile-1.4.5.min.css" >
+<script src="/mbook/public/static/JQM/jquery-1.11.1.min.js"></script>
+<script src="/mbook/public/static/JQM/jquery.mobile-1.4.5.min.js"></script>
+<style type="text/css">
+.snow-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    pointer-events: none;
+  }
+input{ 
+font-weight:bold;
+font-family:"微软雅黑"; 
+height: 30px; 
+line-height: 30px; 
+border-radius:5px; 
+}
+</style>
+
+</head>
+
+<body onload="createCode()">
+<div data-role="page" id="page1" style="background-image:url(/mbook/public/static/images/beijing.jpg);">
+  <div data-role="header"> 
+    <a href="../Index/index.html" data-ajax="false" data-role="button" data-icon="home">首页</a>
+    <a href="../user/login" data-role="button" data-icon="info" data-ajax="false">登陆</a>
+    <h3 id="reg" style="color:#06f; font-size: 18px;"> 用户注册 </h3>
+  </div>
+  <div data-role="content">
+    <form name="RegForm" method="post" action="insert2" data-ajax="false">
+      <div data-role="fieldcontain">
+        <label for="username" style="color:white; font-size: 18px;" align="center"> 用户名: </label>
+        <input name="username"  id="username"  value="" type="text" required>
+      </div>
+      <div data-role="fieldcontain">
+        <label for="password" style="color:white; font-size: 18px;" align="center"> 密码: </label>
+        <input name="password" id="password" placeholder="" value="" type="password" required>
+      </div>
+      <div data-role="fieldcontain">
+        <label for="repass" style="color:white; font-size: 18px;" align="center"> 确认密码: </label>
+        <input name="repass" id="repass" placeholder="" value="" type="password" required>
+      </div>
+      
+      <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup" data-type="horizontal"  >
+        <legend style="color:white; font-size: 18px;" align="center"> 性别: </legend>
+        <label for="male">男</label>
+        <input type="radio" name="gender" id="male" value="男">
+        <label for="female">女</label>
+        <input type="radio" name="gender" id="female" value="女">
+      </fieldset>
+      </div>
+      <div data-role="fieldcontain">
+        <label for="email" style="color:white; font-size: 18px;" align="center"> 邮箱: </label>
+        <input name="email" id="email"  value="" type="email">
+      </div>
+      <div data-role="fieldcontain">
+        <label for="test" style="color:white; font-size: 18px;" align="center"> 验证码: </label> 
+        <input name="test" id="inputCode"  value="" type="test">
+        <label class="code" id="checkCode" onclick="createCode()" style="float:center; "></label>
+      </div>
+      
+      <div align="center">
+        <input data-inline="true" type="submit" name="submit" value="提交" onclick="validateCode();"/>
+        <input data-inline="true" type="reset" name="submit" value="取消" />
+       
+      </div>
+    </form>
+  </div>
+</div>
+<div class="htmleaf-container">
+    
+    <div class="htmleaf-content">
+        <canvas class="snow-canvas" speed="1" interaction="false" size="2" count="80" opacity="0.00001" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" wind-power="0" image="false" width="1366" height="667"></canvas>
+        <canvas class="snow-canvas" speed="3" interaction="true" size="6" count="30" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" opacity="0.00001" wind-power="2" image="false" width="1366" height="667"></canvas>
+        <canvas class="snow-canvas" speed="3" interaction="true" size="12" count="20" wind-power="-5" image="/mbook/public/static/images/snow.png" width="1366" height="667"></canvas>
+      </div>
+    
+  </div>
+  <script src="http://www.5iweb.com.cn/statics/js/jquery.1.7.1.min.js" type="text/javascript"></script>
+  <script src="/mbook/public/static/JQM/snow-plugin.js"></script>
+  <script>
+    $(function(){
+      $(".snow-canvas").snow();
+    });
+  </script>
+  <script language="javascript" type="text/javascript">
+        var code;
+        function createCode() {
+            code = "";
+            var codeLength = 6; //验证码的长度
+            var checkCode = document.getElementById("checkCode");
+            var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
+            'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+            for (var i = 0; i < codeLength; i++) 
+            {
+                var charNum = Math.floor(Math.random() * 52);
+                code += codeChars[charNum];
+            }
+            if (checkCode) 
+            {
+                checkCode.className = "code";
+                checkCode.innerHTML = code;
+            }
+        }
+        function validateCode() 
+        {
+            var inputCode = document.getElementById("inputCode").value;
+            if (inputCode.length < 6) 
+            {
+                alert("请输入验证码！");
+            }
+            else if (inputCode.toUpperCase() != code.toUpperCase()) 
+            {
+                alert("验证码输入有误！");
+                createCode();
+            }
+            else 
+            {
+                alert("验证码正确！");
+            }        
+        }    
+</script>
+</body>
+</html>

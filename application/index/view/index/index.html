@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>书店首页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/mbook/public/static/JQM/jquery.mobile-1.4.5.min.css" >
+<script src="/mbook/public/static/JQM/jquery-1.11.1.min.js"></script>
+<script src="/mbook/public/static/JQM/jquery.mobile-1.4.5.min.js"></script>
+
+
+<style>
+body {
+  margin: 0 auto;
+  text-align:center;
+  padding:0;
+}
+div, ul, li, dl, dt, dd, h1, h2, h3, h4, p {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+a {
+  text-decoration:none;
+}
+
+.ui-bar-f
+{
+background-color:#06f;
+border:#06c 1px solid;
+}
+.ui-bar-f .ui-btn
+{
+background-color:#ff0;
+}
+.ui-bar-f .ui-btn:hover
+{
+background-color: #FFFF37;
+}
+.ui-body-f
+{
+background:url(/mbook/public/static/images/beijing.jpg) no-repeat;
+}
+.ui-body-f .ui-btn
+{
+  background-color :#E0E0E0;
+}
+.ui-body-f .ui-btn:hover
+{
+  background-color: #fff;
+}
+.number{
+  float: left;
+  width: 80px;
+  height: 24px;
+  background: #06f;
+  color: white;
+  margin-top: 10px;
+  margin-left: 20px;
+  text-align: center;
+  line-height: 24px;
+}
+#div1{
+  width: 300px;
+  margin: 0px auto;
+    
+}
+#div2{
+  width: 320px;
+  height: 28px;
+}
+.snow-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  pointer-events: none;
+}
+.over{
+  float: left;
+  width: 80px;
+  height: 24px;
+  background: #06f;
+  color: block;
+  margin-top: 2px;
+  margin-left: 10px;
+  text-align: center;
+  line-height: 24px;
+}
+#div4{
+  position: absolute;
+  left: 10px;
+  top: 30px;
+}
+
+</style>
+
+</head>
+
+<body>
+<div data-role="page">
+  <div data-role="header" data-theme="f">
+    
+    {if isset($username)}
+      <h1 style="color:#f86; ">welcome  {$username}  to my store</h1>
+      <a href="../user/edit" data-role="button" data-icon="info" data-ajax="false">修改信息 </a>
+      <a href="../user/loginout" data-role="button" data-icon="info" data-ajax="false">退出登录 </a>
+    {else}
+    <h1 style="color:#f00;">欢迎来到我的书店</h1>
+    <a href="../user/login" data-role="button" data-icon="info" data-ajax="false">登录</a>
+    {/if}
+  </div>
+  <div data-role="content" data-theme="f" >
+    <div data-role="collapsible" data-collapsed="false" >
+      <h1 >今日特价</h1>
+      <ul>
+      <div id="div1">
+         <a href='../book/booklist?sid={$tejiabook.s_id}' data-ajax="false"> <img src="/mbook/public/static/images/b2.jpg" id="img1" /></a>
+        <div id="div2">
+        <div class="number" id="div11">ASP.NET 4</div>
+        <div class="number" id="div12">Java编程</div>
+        <div class="number" id="div13">PHP开发</div>
+      </div>
+      </div>
+    </div>
+    <div data-role="collapsible" data-collapsed="false">
+      <h1>快捷工具</h1>
+      <div class="ui-grid-b">
+        <div class="ui-block-a"> <a href="../book/booktype"  data-ajax="false"> <img  src="/mbook/public/static/images/neTool01.jpg" /><br/>
+          <span>图书分类</span><br/>
+          <br/>
+          </a> </div>
+        <div class="ui-block-b"> <a href="../book/contactus" data-ajax="false"> <img  src="/mbook/public/static/images/neTool02.jpg"  /><br/>
+          <span>联系我们</span><br/>
+          <br/>
+          </a> </div>
+        <div class="ui-block-c"> <a href="../user/reg" data-ajax="false"> <img  src="/mbook/public/static/images/neTool03.jpg" alt="yhzc" /><br/>
+          <span>用户注册</span><br/>
+          <br/>
+          </a> </div>
+        <div class="ui-block-a"> <a href="../book/bookshow" data-ajax="false"> <img  src="/mbook/public/static/images/neTool04.jpg" alt="sdgg" /><br/>
+          <span>书店公告</span><br/>
+          <br/>
+          </a> </div>
+        <div class="ui-block-b"> <a href="../book/bookhelp"  data-ajax="false"> <img  src="/mbook/public/static/images/neTool05.jpg" alt="bzzx" /><br/>
+          <span>帮助中心</span><br/>
+          <br/>
+          </a> </div>
+        <div class="ui-block-c"> <a href="../book/useback"  data-ajax="false"> <img  src="/mbook/public/static/images/neTool06.jpg" alt="yjfk" /><br/>
+          <span>意见反馈</span><br/>
+          <br/>
+          </a> </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="footer" data-theme="f">
+    <h1 style="color:#fff;">机电书店</h1>
+  </div>
+</div>
+<div class="htmleaf-container">
+    
+    <div class="htmleaf-content">
+        <canvas class="snow-canvas" speed="1" interaction="false" size="2" count="80" opacity="0.00001" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" wind-power="0" image="false" width="1366" height="667"></canvas>
+        <canvas class="snow-canvas" speed="3" interaction="true" size="6" count="30" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" opacity="0.00001" wind-power="2" image="false" width="1366" height="667"></canvas>
+        <canvas class="snow-canvas" speed="3" interaction="true" size="12" count="20" wind-power="-5" image="/mbook/public/static/images/snow.png" width="1366" height="667"></canvas>
+      </div>
+    
+  </div>
+  <div id="div4"><a href="../book/booklist?sid={$tejiabook.s_id}" data-ajax="false"><img src="/mbook/public/static/images/b3.jpg"></a><a href="javascript:closeAdv()">关闭</a></div>
+  <script src="http://www.5iweb.com.cn/statics/js/jquery.1.7.1.min.js" type="text/javascript"></script>
+  <script src="/mbook/public/static/JQM/snow-plugin.js"></script>
+  <script>
+    $(function(){
+      $(".snow-canvas").snow();
+    });
+  </script>
+  <script type="text/javascript">
+    window.onload = init;
+    var arr1 = ["/mbook/public/static/images/b1.jpg","/mbook/public/static/images/b2.jpg","/mbook/public/static/images/php1.jpg"];
+    var arr2 = ["ASP.NET 4","Java编程","PHP开发"];
+    var index = 0;
+    var oldindex = -1;
+    var time = null;
+    function init(){
+      var div2 = document.getElementById("div2");
+      var numberdiv = div2.getElementsByTagName("div");
+      for (var i = 0; i < numberdiv.length; i++) {
+        numberdiv[i].onclick=fun1;
+      };
+      update();
+
+      var div4 = document.getElementById("div4");
+    //初始化坐标
+    //ie opera
+    if (div4.currentStyle) {
+      x = div4.currentStyle.left;
+      y = div4.currentStyle.top;
+    }else{
+      //firefox  chrome  safari
+      x = document.defaultView.getComputedStyle(div4,null).left;
+      y = document.defaultView.getComputedStyle(div4,null).top;
+    }
+    x = parseInt(x);//去掉px
+    y = parseInt(y);
+    }
+    function update(){
+      //切换图片
+      var img1 = document.getElementById("img1");
+      img1.src = arr1[index];
+      //切换广告
+      var div2 = document.getElementById("div2");
+      var numberdiv = div2.getElementsByTagName("div");
+      numberdiv[index].innerHTML = arr2[index];
+      //切换广告样式
+      numberdiv[index].className="over";
+        //如果存在上一张图片，需要将上一张图片的内容和样式还原
+        if(oldindex != -1){
+            numberdiv[oldindex].innerHTML = oldindex+1;
+            numberdiv[oldindex].className="number";
+        }
+        //将当前图片保存为上一张图片
+        oldindex = index;
+      //计数加1
+      index++;
+      if (index ==arr1.length) {
+        index=0;
+      }
+      time = window.setTimeout("update()",1000);
+
+    }
+    function fun1(){
+      if(this.className == "over"){
+            //如果当前是广告就不跳转
+            return;
+        }
+
+        //清除记时器
+        window.clearTimeout(time);
+        index = Number(this.innerHTML) - 1;//求出当前的下标
+        update();//启动动画
+    }
+    window.onscroll = function(){
+    var div4 = document.getElementById("div4");
+    //chrome
+    if (document.body.scrollTop) {
+      div4.style.left = x + parseInt(document.body.scrollLeft)+"px";
+      div4.style.top = y + parseInt(document.body.scrollTop)+"px";
+    }else{
+      //ie  firefox
+      div4.style.left = x + parseInt(document.documentElement.scrollLeft)+"px";
+      div4.style.top = y + parseInt(document.documentElement.scrollTop)+"px";
+    }
+  }
+  function closeAdv(){
+    document.getElementById("div4").style.display="none";
+  }
+    </script>
+</body>
+</html>

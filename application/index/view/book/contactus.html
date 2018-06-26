@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>联系我们</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/mbook/public/static/JQM/jquery.mobile-1.4.5.min.css" >
+<script src="/mbook/public/static/JQM/jquery-1.11.1.min.js"></script>
+<script src="/mbook/public/static/JQM/jquery.mobile-1.4.5.min.js"></script>
+<style type="text/css">
+
+.snow-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    pointer-events: none;
+  }
+
+.box1{ 
+  position:relative;
+  height:auto;
+  width:1500px;
+  font-family:"微软雅黑";
+  color:#CCC;
+  border:#666 solid 2px;
+  }
+
+#div4{
+  position: absolute;
+  right: 10px;
+  top: 30px;
+}
+
+  </style>
+</head>
+
+<body>
+<div data-role="page" id="page1" style="background-image:url(/mbook/public/static/images/beijing.jpg);">
+  <div data-role="header"> 
+    <a href="../Index/index.html" data-ajax="false" data-role="button" data-icon="home">首页</a>
+    <a href="../user/login" data-role="button" data-icon="info" data-ajax="false">登陆</a>
+    <h1> 联系我们 </h1>
+  </div>
+
+<div>
+<div style="line-height:78px;text-align:center;color:#000;font-size: 38px;width: 300px;height: 80px;background:#06f;border-radius:20px;margin: left;">热诚服务</div> <br><br><br>
+<div>
+<dl style="width: 689px">
+   <dd style="left: 219px; top: 374px;color: white;">
+      <p><span><strong><span style="color:white">地址：</span></strong>广东省<a href="#" target="_blank" style="color: white">佛山市</a>北滘镇美的总部<br><br><br>
+      <strong><span style="color:white">邮编：</span></strong>050045<br /><br><br>
+      <strong><span style="color:white">电话：</span></strong>0311-656982474 <br /><br><br>
+      <strong><span style="color:white">邮箱：</span></strong>10045118856@163.com <br /><br><br>
+      <strong><span style="color:white">网址：</span></strong><a href="http://#/" style="color: white">http://www.baidu.com/</a></span></p><p><br /> </p>
+
+    </dd>
+    </dt>
+  </dl>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="htmleaf-container">
+    
+    <div class="htmleaf-content">
+        <canvas class="snow-canvas" speed="1" interaction="false" size="2" count="80" opacity="0.00001" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" wind-power="0" image="false" width="1366" height="667"></canvas>
+        <canvas class="snow-canvas" speed="3" interaction="true" size="6" count="30" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" opacity="0.00001" wind-power="2" image="false" width="1366" height="667"></canvas>
+        <canvas class="snow-canvas" speed="3" interaction="true" size="12" count="20" wind-power="-5" image="/mbook/public/static/images/snow.png" width="1366" height="667"></canvas>
+      </div>
+
+    
+</div>
+<div id="div4"><img src="/mbook/public/static/images/b3.jpg"><a href="javascript:closeAdv()">关闭</a></div>
+  
+  <script src="http://www.5iweb.com.cn/statics/js/jquery.1.7.1.min.js" type="text/javascript"></script>
+  <script src="/mbook/public/static/JQM/snow-plugin.js"></script>
+  <script>
+    $(function(){
+      $(".snow-canvas").snow();
+    });
+  </script>
+  <script type="text/javascript">
+  window.onload = init;
+   var div4 = document.getElementById("div4");
+    //初始化坐标
+    //ie opera
+    if (div4.currentStyle) {
+      x = div4.currentStyle.left;
+      y = div4.currentStyle.top;
+    }else{
+      //firefox  chrome  safari
+      x = document.defaultView.getComputedStyle(div4,null).left;
+      y = document.defaultView.getComputedStyle(div4,null).top;
+    }
+    x = parseInt(x);//去掉px
+    y = parseInt(y);
+    }
+    window.onscroll = function(){
+    var div4 = document.getElementById("div4");
+    //chrome
+    if (document.body.scrollTop) {
+      div4.style.left = x + parseInt(document.body.scrollLeft)+"px";
+      div4.style.top = y + parseInt(document.body.scrollTop)+"px";
+    }else{
+      //ie  firefox
+      div4.style.left = x + parseInt(document.documentElement.scrollLeft)+"px";
+      div4.style.top = y + parseInt(document.documentElement.scrollTop)+"px";
+    }
+  }
+  function closeAdv(){
+    document.getElementById("div4").style.display="none";
+  }
+  </script>
+</body>
+</html>
